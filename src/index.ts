@@ -12,7 +12,7 @@ const date_sort_asc = function (date1: Date, date2: Date) {
 const startDateLimit = parseDate("01/01/1901").getTime();
 const endDateLimit = parseDate("31/12/2999").getTime();
 
-export const main = (arg1: string, arg2: string) => {
+export const daysCalculator = (arg1: string, arg2: string) => {
   const dateArr = [arg1, arg2].map(parseDate).sort(date_sort_asc);
 
   const startDate = dateArr[0];
