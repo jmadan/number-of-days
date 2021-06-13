@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint src --ext .ts,.tsx",
     "test": "jest --coverage",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "prepare": "husky install"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +15,15 @@
     "@types/jest": "^26.0.23",
     "@types/node": "^15.12.2",
     "@types/yargs": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "husky": "^6.0.0",
     "jest": "^27.0.4",
+    "prettier": "^2.3.1",
+    "pretty-quick": "^3.1.0",
     "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "ttypescript": "^1.5.12",
