@@ -1,19 +1,19 @@
 const parseDate = (str: string) => {
-  const dt: string[] = str.split("/");
+  const dt: string[] = str.split('/');
   return new Date(Number(dt[2]), Number(dt[1]) - 1, Number(dt[0]));
 };
 
-const date_sort_asc = function (date1: Date, date2: Date) {
+const dateSortAsc = function (date1: Date, date2: Date) {
   if (date1 > date2) return 1;
   if (date1 < date2) return -1;
   return 0;
 };
 
-const startDateLimit = parseDate("01/01/1901").getTime();
-const endDateLimit = parseDate("31/12/2999").getTime();
+const startDateLimit = parseDate('01/01/1901').getTime();
+const endDateLimit = parseDate('31/12/2999').getTime();
 
-export const daysCalculator = (arg1: string, arg2: string) => {
-  const dateArr = [arg1, arg2].map(parseDate).sort(date_sort_asc);
+export const daysCalculator = (arg1: string, arg2: string): number => {
+  const dateArr = [arg1, arg2].map(parseDate).sort(dateSortAsc);
 
   const startDate = dateArr[0];
   const endDate = dateArr[1].getTime();
@@ -26,7 +26,7 @@ export const daysCalculator = (arg1: string, arg2: string) => {
     endDate < startDateLimit ||
     endDate > endDateLimit
   ) {
-    throw new Error("Please enter a date between 01/01/1901 and 31/12/2999");
+    throw new Error('Please enter a date between 01/01/1901 and 31/12/2999');
   }
 
   const numberOfMilliSecondsInDay = 24 * 60 * 60 * 1000;
