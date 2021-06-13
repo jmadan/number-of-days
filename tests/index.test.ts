@@ -51,7 +51,7 @@ describe('Number of Days between dates', () => {
     const startDate = '02/06/1983';
     const endDate = '04/06/1983';
     const response = daysCalculator(startDate, endDate);
-    expect(response).toEqual(0);
+    expect(response).toEqual(1);
   });
 
   it('should return correct number of days even with dates in wrong order', () => {
