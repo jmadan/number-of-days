@@ -14,3 +14,7 @@ since there are no fully elapsed days contained in between those, and 01/01/2000
 ## Tests
 
 - Run `npm run test`
+
+## Execution
+
+- Run `npm run start`

@@ -1,3 +1,5 @@
+import questions from './questions';
+
 const parseDate = (str: string) => {
   const dt: string[] = str.split('/');
   return new Date(Number(dt[2]), Number(dt[1]) - 1, Number(dt[0]));
@@ -12,19 +14,26 @@ const dateSortAsc = function (date1: Date, date2: Date) {
   return 0;
 };
 
-const validateDates = (date1: number, date2: number) => {
+const validateDates = (fromDate: number, toDate: number) => {
   if (
-    date1 < startDateLimit ||
-    date1 > endDateLimit ||
-    date2 < startDateLimit ||
-    date2 > endDateLimit
+    fromDate < startDateLimit ||
+    fromDate > endDateLimit ||
+    toDate < startDateLimit ||
+    toDate > endDateLimit
   ) {
     throw new Error('Please enter a date between 01/01/1901 and 31/12/2999');
   }
 };
 
-export const daysCalculator = (arg1: string, arg2: string): number => {
-  const dateArr = [arg1, arg2].map(parseDate).sort(dateSortAsc);
+export const daysCalculator = async (): Promise<number> => {
+  const dates = await questions.askForDates();
+  const dateArr = [dates.fromDate, dates.toDate]
+    .map(parseDate)
+    .sort(dateSortAsc);
+
+  if (dateArr[0].getTime() == dateArr[1].getTime()) {
+    return 0;
+  }
 
   const startDate = dateArr[0];
   const endDate = dateArr[1].getTime();
@@ -34,7 +43,9 @@ export const daysCalculator = (arg1: string, arg2: string): number => {
   validateDates(startDateWithAdditionalDay, endDate);
 
   const numberOfMilliSecondsInDay = 24 * 60 * 60 * 1000;
-  const differenceInDays =
-    (endDate - startDateWithAdditionalDay) / numberOfMilliSecondsInDay;
+  const differenceInDays = Math.round(
+    (endDate - startDateWithAdditionalDay) / numberOfMilliSecondsInDay,
+  );
+  console.log(`Number of days between 2 dates are ${differenceInDays} day(s)`);
   return differenceInDays;
 };
